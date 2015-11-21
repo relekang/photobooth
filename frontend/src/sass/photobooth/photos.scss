@@ -1,20 +1,95 @@
-.photos-container{
-  width: 800px;
+$controls-height: 30px;
+.photos-container {
+  width: 100%;
+  max-width: 800px;
   margin: 0 auto
 }
-.photos{
+
+.photos {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  .photo{
+  padding: 0;
+}
+
+.photo {
+  @include breakpoint(large-up) {
     width: 25%;
-    padding: $base-line-height/4;
-    img{
-      max-width: 100%;
-      border: 0 solid salmon;
-      transition: border-width .2s ease;
-      &:hover{
-        border-width: 4px;
+  }
+  @include breakpoint(medium) {
+    width: 33%;
+  }
+  @include breakpoint(small) {
+    width: 50%;
+  }
+  padding: 0 $base-line-height/4;
+  margin-bottom: $base-line-height/2;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  .img-wrapper{
+    width: 100%;
+    height: 100%;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+    border: 0 solid salmon;
+  }
+  &:hover {
+    .controls {
+      background-color: rgba(0, 0, 0, .4);
+      button {
+      transform: translate3d(0, 0, 0);
+    }
+    }
+  }
+  .controls {
+    padding: 0 $base-line-height/4;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: $controls-height;
+    transition: background-color .4s ease;
+    button {
+      &:nth-child(2) {
+        transition-delay: .1s;
+      }
+      &:nth-child(3) {
+        transition-delay: .2s;
+      }
+      &:nth-child(4) {
+        transition-delay: .3s;
+      }
+      transition: transform .4s ease;
+      transform: translate3d(0, 175%, 0);
+      &.remove {
+        position: relative;
+        &:hover{
+          &:after{
+            display: block;
+            content: "Slett";
+            position: absolute;
+            right: 0;
+            width: 80px;
+            top: 0;
+            bottom: 0;
+            line-height: $controls-height;
+            margin-right: $base-line-height/4;
+            color: #fff;
+          }
+        }
+        &:before {
+          content: "\2715";
+        }
+      }
+      &.love{
+        &:before {
+          font-size: 22px;
+          content: "\2665";
+        }
       }
     }
   }

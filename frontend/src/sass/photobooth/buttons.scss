@@ -1,0 +1,21 @@
+button {
+  border: none;
+  outline: none;
+  //padding: $base-line-height/2;
+  position: relative;
+  cursor: pointer;
+  appearance: none;
+  border-radius: 0;
+  color: #fff;
+  &.icon {
+    font-size: 14px;
+    background-color: transparent;
+    &:before {
+      color: #bbb;
+      font-size: 24px;
+    }
+  }
+  &:hover:before, &.highlight:before {
+    color: #fff;
+  }
+}

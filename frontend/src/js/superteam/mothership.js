@@ -10,7 +10,7 @@ PB.Mothership = can.Control({
         if(this.element.hasClass("app"))
             this.main = new PB.App("body", {});
         else
-            this.main = new PB.Photos("[data-c=photos]", {});
+            this.main = new PB.Photos("[data-controller=photos]", {});
     }
 });
 
