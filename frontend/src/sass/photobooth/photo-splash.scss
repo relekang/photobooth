@@ -1,0 +1,73 @@
+.photo-splash, .photo-splash .overlay {
+  z-index: -1;
+}
+
+.photo-splash {
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  position: fixed;
+  top: 0px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  perspective: 2000;
+  transition: z-index .3s;
+  &.visible {
+    z-index: 999999;
+    .overlay {
+      opacity: 1;
+    }
+    > .content {
+      opacity: 1;
+      @include breakpoint(medium-up) {
+        transform: translate3d(-50%, -50%, 0);
+      }
+    }
+  }
+  > .content {
+    h1 {
+      display: none;
+    }
+    max-height: 95%;
+    transition: all .3s;
+    position: absolute;
+    top: 50%;
+    background: white;
+    overflow: auto;
+    width: 40%;
+    max-width: 400px;
+    padding: $base-line-height;
+    transform: translate3d(-50%, 0, 0);
+    left: 50%;
+    z-index: 2;
+    opacity: 0;
+    @include breakpoint(medium) {
+      width: 70%;
+      left: 15%;
+    }
+    @include breakpoint(small) {
+      width: auto;
+      left: $base-line-height/2;
+      right: $base-line-height/2;
+      top: $base-line-height/2;
+      bottom: $base-line-height/2;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  .overlay {
+    top: 0px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    perspective: 2000;
+    z-index: 1;
+    transition: opacity .5s;
+    opacity: 0;
+    position: absolute;
+    background-color: rgba(0, 0, 0, .7);
+  }
+
+}

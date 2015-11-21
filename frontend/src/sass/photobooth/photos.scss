@@ -91,6 +91,12 @@ $controls-height: 30px;
           content: "\2665";
         }
       }
+      &.full-screen{
+        &:before {
+          font-size: 22px;
+          content: "\2922";
+        }
+      }
     }
   }
 }
