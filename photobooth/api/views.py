@@ -2,7 +2,6 @@ from io import BytesIO
 
 from django.http import HttpResponse
 from django.http.response import JsonResponse
-from PIL import Image
 from rest_framework import viewsets
 from rest_framework.views import APIView
 
@@ -10,6 +9,12 @@ from photobooth import image_filters
 from photobooth.gallery import tasks as photo_tasks
 from photobooth.gallery.models import Photo
 from photobooth.gallery.serializers import PhotoSerializer
+
+try:
+    from PIL import Image
+except ImportError:
+    Image = None
+
 
 
 class PhotoViewSet(viewsets.ModelViewSet):
