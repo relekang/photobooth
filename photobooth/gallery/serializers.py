@@ -43,6 +43,7 @@ class PhotoSerializer(serializers.HyperlinkedModelSerializer):
             'created_at',
             'updated_at',
             'like_count',
+            'is_active',
             'image',
             'preview',
             'thumbnail',
