@@ -14,6 +14,7 @@ def take_photo():
     logger.info('Starting photo capture')
     with picamera.PiCamera() as camera:
         camera.resolution = (1440, 1080)
+        camera.rotation = 270
         camera.start_preview()
         time.sleep(1)
         camera.capture('foo.jpg')
