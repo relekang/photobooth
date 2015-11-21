@@ -5,11 +5,13 @@ from .models import Photo
 
 
 def create_url(request, path):
-    return 'http{s}://{host}{path}'.format(
+    return 'http{s}://{url}'.format(
         s='s' if request.is_secure() else '',
-        host=request.get_host(),
-        path=path
-    ).replace('//', '/')
+        url='{host}{path}'.format(
+            host=request.get_host(),
+            path=path
+        ).replace('//', '/')
+    )
 
 
 class ImageSerializer(serializers.BaseSerializer):
