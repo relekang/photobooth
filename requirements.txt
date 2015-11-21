@@ -4,3 +4,4 @@ pillow
 djangorestframework
 psycopg2
 django-cors-headers
+python-thumbnails

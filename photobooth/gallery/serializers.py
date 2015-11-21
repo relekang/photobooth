@@ -11,4 +11,5 @@ class PhotoSerializer(serializers.HyperlinkedModelSerializer):
             'file',
             'created_at',
             'updated_at',
+            'thumbnail_url',
         )
