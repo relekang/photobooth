@@ -33,8 +33,9 @@ PB.Photo = can.Control({
 			this.element.remove();
 		}))
 	},
-	'[data-action=fullscreen] click': function(){
-		
+	'[data-action=full-screen] click': function(){
+		var splash = new PB.PhotoSplash('<div class="photo-splash">', this.data);
+		$("body").append(splash.element);
 	},
 	'[data-action=love] click': function(){
 		if(!this.viewData.attr("cooldown")){
