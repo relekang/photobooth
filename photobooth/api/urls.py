@@ -4,7 +4,7 @@ from rest_framework import routers
 from photobooth.api.views import PhotoViewSet, TakePhotoView
 
 router = routers.DefaultRouter()
-router.register(r'photos', PhotoViewSet)
+router.register(r'photos', PhotoViewSet, base_name='photo')
 
 urlpatterns = [
     url(
