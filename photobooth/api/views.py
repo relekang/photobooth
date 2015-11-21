@@ -29,6 +29,6 @@ class PhotoViewSet(viewsets.ModelViewSet):
 
 class TakePhotoView(APIView):
     def post(self, request):
-        photo_tasks.take_photo.delay(0)
+        photo_tasks.take_photo.delay()
 
         return JsonResponse({'message': 'Photo will be taken'}, status=202)
