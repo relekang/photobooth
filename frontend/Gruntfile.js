@@ -41,7 +41,8 @@ module.exports = function (grunt) {
                         'src/js/lib/jquery-2.1.1.min.js',
                         'src/js/lib/can.custom.js',
                         'src/js/lib/fastclick.js',
-                        'src/js/lib/ScrollMagic.js'
+                        'src/js/lib/ScrollMagic.js',
+                        'src/js/lib/reconnecting-websocket.min.js',
                     ]
                 }
             },

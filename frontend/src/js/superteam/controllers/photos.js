@@ -3,12 +3,27 @@ PB.Photos = can.Control({
 }, {
     photos: undefined,
     timer: undefined,
+    socket: undefined,
     init: function () {
         this.photos = [];
         var v = Helpers.getView(PB.Views.photos);
         this.element.html(v);
 		this.timer = setInterval(this.proxy(this.getPhotos), config.PHOTOS_GET_INTERVAL)
+        this.initWebSocket();
 	},
+    initWebSocket: function () {
+        this.socket = new ReconnectingWebSocket(config.WS_URL);
+        this.socket.open();
+        this.socket.onopen(function(){
+            console.log("JUBEL");
+        })
+        this.socket.onmessage(this.proxy(function(message, data){
+            console.log(message);
+        }));
+    },
+    newPhoto: function(data){
+
+    },
     updatePhoto: function (photo) {
 
     },
@@ -26,7 +41,11 @@ PB.Photos = can.Control({
 
         }));
     },
+    newPhotoSplash: function (photo) {
+
+    },
     addPhoto: function(photo){
+        this.newPhotoSplash(photo);
         this.photos.push(photo);
         var p = new PB.Photo($('<li class="photo">'), photo);
         this.element.find(".photos").prepend(p.element);

@@ -1,4 +1,4 @@
-PB.App = can.Control({
+PB.Remote = can.Control({
 		defaults: {}
 }, {
 	init: function () {
