@@ -14,3 +14,7 @@ class LandingPage(TemplateView):
 
 class Remote(LoginRequiredMixin, TemplateView):
     template_name = 'remote.html'
+
+    @method_decorator(ensure_csrf_cookie)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
