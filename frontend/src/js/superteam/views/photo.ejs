@@ -1,7 +1,7 @@
 <div class="img-wrapper"><img src="<%= this.thumbnail.vignette %>"/></div>
+<div data-action="full-screen" class="full-screen"></div>
 <div class="controls">
 	<button data-action="remove" data-tooltip="Slett" class="icon float-right remove"></button>
-	<button data-action="full-screen" class="icon float-left full-screen"></button>
 	<button data-action="love" class="icon float-left love<%= (this.attr("cooldown") ? " highlight" : "") %>">
 		<span><%= this.attr("like_count") %></span>
 	</button>

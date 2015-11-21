@@ -122,6 +122,6 @@ Array.prototype.take = $.prototype.take = function(count){
 Array.prototype.skip = $.prototype.skip = function(count){
     if(this.length == 0) return this;
     if(this.length <= count)
-        return null;
+        return [];
     return this.slice(count);
 }

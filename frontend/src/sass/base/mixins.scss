@@ -267,7 +267,8 @@ $large-breakpoint-value-1: $large-breakpoint-value + 1px;
     border-left: 1px solid red;
     border-radius: 5px 0 0 5px;
     background: rgba(255, 255, 255, 0.8);
-    opacity: 0.3;
+    opacity: 0;
+    pointer-events: none;
     @include breakpoint(xsmall) {
       content: "xsmall";
     }

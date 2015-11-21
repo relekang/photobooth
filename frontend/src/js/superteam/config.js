@@ -1,6 +1,6 @@
 config = {};
 config.APP_URL = "http://booth.lkng.me/";
-config.WS_URL = "ws://ron.frigg.io:1337";
+config.WS_URL = "ws://fred.mocco.no:1337";
 config.API_URL = config.APP_URL + "api/";
 config.PHOTOS_PATH = "photos/";
 config.CAMERA_SNAPSHOT_URL = config.API_URL + config.PHOTOS_PATH + "take/";

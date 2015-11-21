@@ -5,7 +5,6 @@ PB.PhotoSplash = can.Control({
     isDismissed: false,
 
     init: function () {
-
         this.element.html(Helpers.getView(PB.Views.photo_splash, {url: this.options.preview.vignette}));
         this.ready();
     },

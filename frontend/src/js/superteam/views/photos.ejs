@@ -1,2 +1,15 @@
-<ul class="photos">
-</ul>
+<h2>Nyeste</h2>
+<div class="latest">
+	<img src="<%= this.attr("latest") %>" alt="">
+</div>
+<h2>Wall of fame</h2>
+<ul data-list="top" class="photos"></ul>
+
+<h2>Alle bilder (<%= this.attr("photoCount") %>)</h2>
+<div class="all">
+	<ul data-list="all" class="photos"></ul>
+	<div class="buttons">
+		<button class="prev" data-action="prev"><</button>
+		<button class="next" data-action="next">></button>
+	</div>
+</div>

@@ -12,6 +12,18 @@ $controls-height: 30px;
   padding: 0;
 }
 
+.buttons {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  button:first-child {
+    margin-right: $base-line-height/2;
+  }
+  button {
+    font-size: 24px;
+  }
+}
+
 .photo {
   @include breakpoint(large-up) {
     width: 25%;
@@ -28,7 +40,13 @@ $controls-height: 30px;
   align-items: center;
   position: relative;
   overflow: hidden;
-  .img-wrapper{
+  .full-screen {
+    cursor: pointer;
+    opacity: 0;
+    z-index: 10;
+    @include absolute(0, 0, 0, 0);
+  }
+  .img-wrapper {
     width: 100%;
     height: 100%;
   }
@@ -41,8 +59,8 @@ $controls-height: 30px;
     .controls {
       background-color: rgba(0, 0, 0, .4);
       button {
-      transform: translate3d(0, 0, 0);
-    }
+        transform: translate3d(0, 0, 0);
+      }
     }
   }
   .controls {
@@ -67,8 +85,8 @@ $controls-height: 30px;
       transform: translate3d(0, 175%, 0);
       &.remove {
         position: relative;
-        &:hover{
-          &:after{
+        &:hover {
+          &:after {
             display: block;
             content: "Slett";
             position: absolute;
@@ -85,15 +103,14 @@ $controls-height: 30px;
           content: "\2715";
         }
       }
-      &.love{
+      &.love {
         &:before {
           font-size: 22px;
           content: "\2665";
         }
       }
-      &.full-screen{
+      &.full-screen {
         &:before {
-          font-size: 22px;
           content: "\2922";
         }
       }

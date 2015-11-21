@@ -16,7 +16,7 @@ PB.Photo = can.Control({
 	patch: function(field, val, callback){
 		var d = {
 			csrftoken: config.CSRF_TOKEN,
-			id: this.data.id,
+			id: this.data.id
 		};
 		d[field] = val;
 		$.ajax({

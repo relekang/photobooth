@@ -44,17 +44,13 @@
     left: 50%;
     z-index: 2;
     opacity: 0;
-    @include breakpoint(medium) {
-      width: 70%;
-      left: 15%;
-    }
     @include breakpoint(small) {
       width: auto;
       left: $base-line-height/2;
       right: $base-line-height/2;
-      top: $base-line-height/2;
-      bottom: $base-line-height/2;
-      transform: translate3d(0, 0, 0);
+      top: 50%;
+
+      transform: translate3d(0, -50%, 0);
     }
   }
   .overlay {
