@@ -114,8 +114,10 @@ module.exports = function (grunt) {
                 flatten: true
             },
             html: {
-                src: 'src/html/index.html',
-                dest: 'build/index.html'
+                expand: true,
+                cwd: "src/html/",
+                src: '**',
+                dest: 'build/'
             }
         }
     });
