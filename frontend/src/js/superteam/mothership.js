@@ -7,7 +7,7 @@ PB.Mothership = can.Control({
 }, {
     main: undefined,
     init: function () {
-        if(this.element.hasClass("app"))
+        if(this.element.hasClass("remote"))
             this.main = new PB.Remote("body", {});
         else
             this.main = new PB.Photos("[data-controller=photos]", {});

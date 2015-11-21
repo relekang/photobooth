@@ -7,10 +7,10 @@ PB.Photo = can.Control({
 		this.data = this.options;
 		this.viewData = new can.Map({
 			thumbnail: this.data.thumbnail,
-			likes: this.data.likes || 0,
+			likes: this.data.like_count || 0,
 			cooldown: false
 		});
-		this.data.likes = 0;
+		this.data.like_count = 0;
 		this.element.html(Helpers.getView(PB.Views.photo, this.viewData))
 	},
 	'[data-action=remove] click': function(){
@@ -20,8 +20,21 @@ PB.Photo = can.Control({
 	},
 	'[data-action=love] click': function(){
 		if(!this.viewData.attr("cooldown")){
-			this.viewData.attr("likes", this.viewData.attr("likes") + 1);
+			this.viewData.attr("like_count", this.viewData.attr("like_count") + 1);
 			this.viewData.attr("cooldown", true);
+
+			$.ajax({
+				url: config.API_URL + config.PHOTOS_PATH + this.data.id,
+				method: "PATCH",
+				data: {
+					id: this.data.id,
+					like_count: this.viewData.attr("like_count")
+				},
+				complete: this.proxy(function(response){
+				    console.log(response);
+				})
+			})
+
 			setTimeout(this.proxy(this.proxy(function(){
 				this.viewData.attr("cooldown", false);
 			})), config.PHOTO_COOLDOWN_TIME);
