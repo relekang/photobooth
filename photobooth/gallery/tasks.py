@@ -21,7 +21,7 @@ def take_photo():
         camera.stop_preview()
         logger.info('Saved image to disk, starting upload')
         files = {'file': open('foo.jpg', 'rb')}
-        response = requests.post("http://booth.lkng.me/api/photos/", files=files)
+        response = requests.post("http://booth.lkng.me/api/photos/", files=files, data={'is_active': True})
 
         if response.status_code == 200 or response.status_code == 201:
             logger.info('Upload complete')
