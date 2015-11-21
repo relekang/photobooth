@@ -17,8 +17,10 @@ except ImportError:
 
 
 class PhotoViewSet(viewsets.ModelViewSet):
-    queryset = Photo.objects.filter(is_active=True)
     serializer_class = PhotoSerializer
+
+    def get_queryset(self):
+        return Photo.objects.filter(is_active=True)
 
     def filter_image(self, request, filter_name, path):
         string_file = BytesIO()

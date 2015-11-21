@@ -55,13 +55,13 @@ $controls-height: 30px;
     transition: background-color .4s ease;
     button {
       &:nth-child(2) {
-        transition-delay: .1s;
+        transition-delay: .0s;
       }
       &:nth-child(3) {
-        transition-delay: .2s;
+        transition-delay: .1s;
       }
       &:nth-child(4) {
-        transition-delay: .3s;
+        transition-delay: .2s;
       }
       transition: transform .4s ease;
       transform: translate3d(0, 175%, 0);
@@ -89,6 +89,12 @@ $controls-height: 30px;
         &:before {
           font-size: 22px;
           content: "\2665";
+        }
+      }
+      &.full-screen{
+        &:before {
+          font-size: 22px;
+          content: "\2922";
         }
       }
     }

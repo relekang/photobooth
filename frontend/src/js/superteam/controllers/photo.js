@@ -1,5 +1,5 @@
 PB.Photo = can.Control({
-		defaults: {}
+    defaults: {}
 }, {
 	data: undefined,
 	viewData: undefined,
@@ -7,38 +7,46 @@ PB.Photo = can.Control({
 		this.data = this.options;
 		this.viewData = new can.Map({
 			thumbnail: this.data.thumbnail,
-			likes: this.data.like_count || 0,
+			like_count: this.data.like_count || 0,
 			cooldown: false
 		});
 		this.data.like_count = 0;
 		this.element.html(Helpers.getView(PB.Views.photo, this.viewData))
 	},
+	patch: function(field, val, callback){
+		var d = {
+			csrftoken: config.CSRF_TOKEN,
+			id: this.data.id,
+		};
+		d[field] = val;
+		$.ajax({
+			url: config.API_URL + config.PHOTOS_PATH + this.data.id + "/",
+			method: "PATCH",
+			data: d,
+			complete: this.proxy(function(response){
+				callback(response);
+			})
+		});
+	},
 	'[data-action=remove] click': function(){
-		$.post(config.API_URL + config.PHOTOS_PATH + this.data.id, {csrftoken: config.CSRF_TOKEN, is_active: false}, this.proxy(function(response){
-		   this.element.remove();
+		this.patch("is_active", false, this.proxy(function(){
+			this.element.remove();
 		}))
+	},
+	'[data-action=full-screen] click': function(){
+		var splash = new PB.PhotoSplash('<div class="photo-splash">', this.data);
+		$("body").append(splash.element);
 	},
 	'[data-action=love] click': function(){
 		if(!this.viewData.attr("cooldown")){
 			this.viewData.attr("like_count", this.viewData.attr("like_count") + 1);
 			this.viewData.attr("cooldown", true);
-
-			$.ajax({
-				url: config.API_URL + config.PHOTOS_PATH + this.data.id,
-				method: "PATCH",
-				data: {
-					csrftoken: config.CSRF_TOKEN,
-					id: this.data.id,
-					like_count: this.viewData.attr("like_count")
-				},
-				complete: this.proxy(function(response){
-				    console.log(response);
-				})
-			});
-
-			setTimeout(this.proxy(this.proxy(function(){
-				this.viewData.attr("cooldown", false);
-			})), config.PHOTO_COOLDOWN_TIME);
-		}
-	}
+			this.patch("like_count", this.viewData.attr("like_count"), this.proxy(function(response){
+			    console.log(response);
+			}));
+            setTimeout(this.proxy(this.proxy(function () {
+                this.viewData.attr("cooldown", false);
+            })), config.PHOTO_COOLDOWN_TIME);
+        }
+    }
 });
