@@ -16,7 +16,6 @@ except ImportError:
     Image = None
 
 
-
 class PhotoViewSet(viewsets.ModelViewSet):
     queryset = Photo.objects.filter(is_active=True)
     serializer_class = PhotoSerializer
