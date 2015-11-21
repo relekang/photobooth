@@ -10,9 +10,8 @@ PB.Photos = can.Control({
 		this.timer = setInterval(this.proxy(this.getPhotos), config.PHOTOS_GET_INTERVAL)
 	},
     getPhotos: function () {
-        console.log("get photos");
         $.get(config.API_URL + config.PHOTOS_PATH, this.proxy(function(response){
-            this.photos.attr(response);
+            this.photos.attr(response.reverse());
         }));
     },
     stopTimer: function(){
