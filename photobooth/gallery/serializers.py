@@ -27,16 +27,18 @@ class ImageSerializer(serializers.BaseSerializer):
 
 
 class PhotoSerializer(serializers.HyperlinkedModelSerializer):
-    thumbnail = ImageSerializer(read_only=True)
     image = ImageSerializer(read_only=True)
+    preview = ImageSerializer(read_only=True)
+    thumbnail = ImageSerializer(read_only=True)
 
     class Meta:
         model = Photo
         fields = (
             'id',
             'file',
-            'image',
             'created_at',
             'updated_at',
+            'image',
+            'preview',
             'thumbnail',
         )

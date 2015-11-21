@@ -17,5 +17,9 @@ class Photo(TimeStampModel):
         return get_thumbnail(os.path.join(settings.MEDIA_ROOT, self.file.name), '300')
 
     @property
+    def preview(self):
+        return get_thumbnail(os.path.join(settings.MEDIA_ROOT, self.file.name), '1400')
+
+    @property
     def image(self):
         return self.file
