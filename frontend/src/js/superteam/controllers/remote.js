@@ -4,8 +4,8 @@ PB.Remote = can.Control({
 	init: function () {
 	},
     '[data-action=camera-shot] click': function(){
-        $.post(config.CAMERA_SNAPSHOT_URL, this.proxy(function(response){
+        $.post(config.CAMERA_SNAPSHOT_URL,{csrftoken: config.CSRF_TOKEN}, this.proxy(function(response){
             console.log(response);
-        }))
+        }));
     }
 });
