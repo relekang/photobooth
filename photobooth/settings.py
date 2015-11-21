@@ -21,8 +21,11 @@ def secret(key):
             _secret.update(json.load(f))
     return _secret.get(key)
 
-DEBUG = secret('DEBUG') or True
-SECRET_KEY = 'a9ge!f%w7d*x*9@@@a9022@xn^jh@u!u=&#emczfwjx86r705%'
+DEBUG = secret('DEBUG')
+if DEBUG is None:
+    DEBUG = True
+
+SECRET_KEY = secret('SECRET_KEY') or 'a9ge!f%w7d*x*9@@@a9022@xn^jh@u!u=&#emczfwjx86r705%'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -34,7 +37,7 @@ CELERY_ACCEPT_CONTENT = ['json']
 BROKER_URL = secret('BROKER_URL') or 'redis://localhost:6379/5'
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.lkng.me']
 
 INSTALLED_APPS = [
     'photobooth.gallery',
