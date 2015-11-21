@@ -1,4 +1,4 @@
-django
+django==1.9rc1
 django-basis
 pillow
 djangorestframework
