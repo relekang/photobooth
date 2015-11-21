@@ -5,9 +5,12 @@ PB = {
 PB.Mothership = can.Control({
     defaults: {}
 }, {
-    photos: undefined,
+    main: undefined,
     init: function () {
-        this.photos = new PB.Photos("[data-c=photos]", {});
+        if(this.element.hasClass("app"))
+            this.main = new PB.App("body", {});
+        else
+            this.main = new PB.Photos("[data-c=photos]", {});
     }
 });
 

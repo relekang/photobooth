@@ -3,19 +3,19 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel='stylesheet' type='text/css' href='css/screen.css'>
-	<script type="text/javascript" src='scripts/lib.min.js'></script>
-	<script type="text/javascript" src='scripts/app.min.js'></script>
-	<title>Photobooth</title>
+	<link rel='stylesheet' type='text/css' href='static/css/screen.css'>
+	<script type="text/javascript" src='static/scripts/lib.min.js'></script>
+	<script type="text/javascript" src='static/scripts/app.min.js'></script>
+	<title>BoothApp</title>
 </head>
-<body>
+<body class="app">
 <header class="main-header"></header>
 
 <div class="container content-wrapper">
 	<aside class="left"></aside>
 
 	<div class="main-content scrollable">
-		<div data-c="photos" class="photos-container"></div>
+		<button class="shoot" data-action="camera-shot">Shoot!</button>
 	</div>
 	<div class="dimmer"></div>
 	<aside class="right"></aside>

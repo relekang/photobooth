@@ -3,7 +3,7 @@
 	<% for (var i = 0; i < this.attr("length"); i++) {
 		var photo = this[i];
 	%>
-	<li>
+	<li data-id="<%= photo.id %>">
 		<img src="<%= photo.file %>"/>
 	</li>
 	<% } %>
