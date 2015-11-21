@@ -1,0 +1,8 @@
+django==1.9rc1
+django-basis
+djangorestframework
+django-cors-headers
+python-thumbnails
+celery
+requests
+redis
