@@ -4,6 +4,7 @@ import os
 import redis
 from basis.models import TimeStampModel
 from django.db import models
+from django.utils.safestring import mark_safe
 from thumbnails import get_thumbnail, settings
 
 
@@ -26,6 +27,10 @@ class Photo(TimeStampModel):
     @property
     def image(self):
         return self.file
+
+    @property
+    def inline_thumbnail(self):
+        return mark_safe('<img src="{}" >'.format(self.thumbnail.url))
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
