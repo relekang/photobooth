@@ -9,8 +9,17 @@ https://docs.djangoproject.com/en/dev/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
-
+import json
 import os
+
+_secret = {}
+
+
+def secret(key):
+    if not _secret and os.environ.get('SECRETS_PATH'):
+        with open(os.environ['SECRETS_PATH']) as f:
+            _secret.update(json.load(f))
+    return _secret.get(key)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -77,8 +86,10 @@ WSGI_APPLICATION = 'photobooth.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'photobooth',
+        'USER': secret('DB_USER'),
+        'PASSWORD': secret('DB_PASSWORD')
     }
 }
 
