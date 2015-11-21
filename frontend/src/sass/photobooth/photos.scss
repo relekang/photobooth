@@ -43,7 +43,7 @@ $controls-height: 30px;
   .full-screen {
     cursor: pointer;
     opacity: 0;
-    z-index: 10;
+    z-index: 2;
     @include absolute(0, 0, 0, 0);
   }
   .img-wrapper {
@@ -63,56 +63,61 @@ $controls-height: 30px;
       }
     }
   }
-  .controls {
-    padding: 0 $base-line-height/4;
-    position: absolute;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    height: $controls-height;
-    transition: background-color .4s ease;
-    button {
-      &:nth-child(2) {
-        transition-delay: .0s;
-      }
-      &:nth-child(3) {
-        transition-delay: .1s;
-      }
-      &:nth-child(4) {
-        transition-delay: .2s;
-      }
-      transition: transform .4s ease;
+  .controls{
+    button{
       transform: translate3d(0, 175%, 0);
-      &.remove {
-        position: relative;
-        &:hover {
-          &:after {
-            display: block;
-            content: "Slett";
-            position: absolute;
-            right: 0;
-            width: 40px;
-            top: 0;
-            bottom: 0;
-            line-height: $controls-height;
-            margin-right: 25px;
-            color: #fff;
-          }
-        }
-        &:before {
-          content: "\2715";
+    }
+  }
+}
+.controls {
+  z-index: 3;
+  padding: 0 $base-line-height/4;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: $controls-height;
+  transition: background-color .4s ease;
+  button {
+    &:nth-child(2) {
+      transition-delay: .0s;
+    }
+    &:nth-child(3) {
+      transition-delay: .1s;
+    }
+    &:nth-child(4) {
+      transition-delay: .2s;
+    }
+    transition: transform .4s ease;
+    &.remove {
+      position: relative;
+      &:hover {
+        &:after {
+          display: block;
+          content: "Slett";
+          position: absolute;
+          right: 0;
+          width: 40px;
+          top: 0;
+          bottom: 0;
+          line-height: $controls-height;
+          margin-right: 25px;
+          color: #fff;
         }
       }
-      &.love {
-        &:before {
-          font-size: 22px;
-          content: "\2665";
-        }
+      &:before {
+        content: "\2715";
       }
-      &.full-screen {
-        &:before {
-          content: "\2922";
-        }
+    }
+    &.love {
+      &:before {
+        font-size: 22px;
+        content: "\2665";
+      }
+    }
+    &.full-screen {
+      &:before {
+        content: "\2922";
       }
     }
   }

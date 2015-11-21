@@ -24,14 +24,12 @@ PB.Photo = can.Control({
 			method: "PATCH",
 			data: d,
 			complete: this.proxy(function(response){
-				callback(response);
+				if(callback) callback(response);
 			})
 		});
 	},
 	'[data-action=remove] click': function(){
-		this.patch("is_active", false, this.proxy(function(){
-			this.element.remove();
-		}))
+		this.patch("is_active", false)
 	},
 	'[data-action=full-screen] click': function(){
 		var splash = new PB.PhotoSplash('<div class="photo-splash">', this.data);

@@ -5,7 +5,10 @@ PB.PhotoSplash = can.Control({
     isDismissed: false,
 
     init: function () {
-        this.element.html(Helpers.getView(PB.Views.photo_splash, {url: this.options.preview.vignette}));
+        this.element.html(Helpers.getView(PB.Views.photo_splash, {
+            url: this.options.preview.vignette,
+            likeCount: this.options.like_count
+        }));
         this.ready();
     },
     ready: function(){

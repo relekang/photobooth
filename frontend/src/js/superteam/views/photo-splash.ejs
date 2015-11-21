@@ -5,4 +5,10 @@
 			<img src="<%= this.url %>" alt="">
 		</div>
 	</div>
+	<div class="controls">
+		<button data-action="remove" data-tooltip="Slett" class="icon float-right remove"></button>
+		<button data-action="love" class="icon float-left love">
+			<span style="color: #333;"><%= this.likeCount %></span>
+		</button>
+	</div>
 </div>
