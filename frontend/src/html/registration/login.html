@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel='stylesheet' type='text/css' href='/static/css/screen.css'>
+	<title>Photobooth</title>
+</head>
+<body>
+<header class="main-header">
+	<img src="static/img/logo.png">
+</header>
+
+<div class="container content-wrapper">
+	<aside class="left"></aside>
+
+	<div class="main-content scrollable">
+      <h1>Login</h1>
+      <form method="post" class="form-inline">
+		  {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-info">Login</button>
+      </form>
+	</div>
+	<div class="dimmer"></div>
+	<aside class="right"></aside>
+
+  </div>
+</div>
+</body>
+</html>
+
