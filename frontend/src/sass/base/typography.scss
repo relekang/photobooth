@@ -1,0 +1,60 @@
+/* FONTS AND TYPOGRAPHY */
+// Embedded webfonts
+//**********************
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic,300);
+
+//Set up your font families
+$mainfont: "Open Sans", helvetica, arial, sans-serif;
+$mainfont-italic: "Open Sans", helvetica, arial, sans-serif;
+
+@font-face {
+  font-family: 'Open Sans';
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src:url('fonts/icomoon.eot');
+  src:url('fonts/icomoon.eot') format('embedded-opentype'),
+  url('fonts/icomoon.ttf') format('truetype'),
+  url('fonts/icomoon.woff') format('woff'),
+  url('fonts/icomoon.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin mainfont{
+  font-family: "Open Sans", helvetica, arial, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+@mixin mainfont-bold{
+  font-family: "Open Sans", helvetica, arial, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+@mixin mainfont-bold-italic{
+  font-family: "Open Sans", helvetica, arial, sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+@mixin mainfont-italic{
+  font-family: "Open Sans", helvetica, arial, sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+@mixin mainfont-light{
+  font-family: "Open Sans", helvetica, arial, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  @include font-smoothing();
+  @include mainfont;
+  color: $text-color;
+}
+
+p{
+  line-height: $base-line-height;
+}

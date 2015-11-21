@@ -1,0 +1,89 @@
+// SETTINGS
+// Draws columns or baseline grid while developing as well as current breakpoint.
+// This is not pixelperfect, its more a guideline
+$view-helpers: false;
+$view-base-line-grid: true;
+$view-breakpoints: true;
+$show-baseline-grid-backgrounds: false;
+
+// STEP 01 - VERTICAL RYTHM
+// Setting vertical rythm. Important for vertical alignment of text and elements.
+// Optimal settings would be a font-size and line-height that are dividable and can be used to calculate other sizes. Odd-numbers are "bad" numbers
+// Normally your standard <p> size
+$base-font-size: 16px;
+// Its smart to use $base-line-height*X for sizes to make sure things stick to the grid.
+$base-line-height: 24px;
+$round-to-nearest-half-line: true;
+// Allows compass to round to  multiples of 0.5x line height
+//$rhythm-unit 								: "rem"; // Sets rhythm unit to rem. Remove to use default em unit.
+
+// STEP 02 - BREAKPOINTS
+$xsmall-breakpoint-value: 330px;
+$small-breakpoint-value: 600px;
+$medium-breakpoint-value: 1024px;
+$large-breakpoint-value: 1280px;
+
+$page-max-width: 1280px;
+
+
+// STEP 03 - BASE GRID SETTINGS.
+$total-columns: 12;
+// default grid number
+$container-style: magic;
+// magic = sets a "max-width" calculated from your column settings. This is the best one to use for responsive grids.
+// static = sets a fixed "width" calculated from your column settings. Not responsive
+// fluid = sets a width = 100%. Uses the entire browser width
+
+$total-columns-small: 2;
+$total-columns-medium: 6;
+$total-columns-large: 12;
+$total-columns-xlarge: 12;
+
+$offset: 0em;
+
+$susy: (
+        columns: $total-columns,
+        gutters: .25,
+        global-box-sizing: border-box,
+        use-custom: (
+                rem: true,
+                background-image: false,
+                box-sizing: true,
+                clearfix: true
+        ),
+        debug: (
+                image: show,
+                output: overlay,
+                toggle: top left,
+        ),
+);
+
+// STEP 04 - COLORS (Optional)
+$red: #F2001A;
+$blue: #005273;
+$grey: #C0C1C2;
+$light-grey: #EEEFF0;
+$middle-grey: #C0C1C2;
+$dark-grey: #525354;
+$border-grey: #C0C1C2;
+$background-grey: #F4F5F6;
+$text-color: #525354;
+
+//Profile colors
+
+// STEP 05 - HEADINGS (Optional)
+$h1-size: 46px;
+$h2-size: 26px;
+$h3-size: 24px;
+$h4-size: 22px;
+$h5-size: 14px;
+
+$h1-size-mobile: 24px;
+$h2-size-mobile: 18px;
+$h3-size-mobile: 22px;
+$h4-size-mobile: 22px;
+$h5-size-mobile: 14px;
+
+
+$header-height: 60px;
+$aside-width: 300px;

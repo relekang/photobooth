@@ -1,0 +1,22 @@
+
+*{
+  box-sizing: border-box;
+}
+
+body, html{
+  height: 100%;
+}
+.container {
+  @extend %clearfix;
+  max-width: $page-max-width;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+  @include breakpoint(large) {
+    padding: 0 $base-line-height;
+  }
+
+  @include breakpoint(small) {
+    max-width: 100%
+  }
+}

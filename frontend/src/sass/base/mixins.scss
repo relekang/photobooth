@@ -1,0 +1,304 @@
+//GLOBAL MIXINS
+
+/////////////////////////// CONVERTERS
+//Function to convert from pixels to ems
+@function em($target, $context: $base-font-size) {
+   @if $target == 0 { @return 0 }
+   @return $target / $context + 0em;
+}
+
+// FONTS
+// Importing fonts from the css/fonts/ folder
+// ***************************************
+@mixin fontimport($filename) { //filename without extension
+	@font-face {
+	   font-family:"" + $filename + "";
+	      src: url('fonts/' + $filename + '.eot');
+			src: url('fonts/' + $filename + '.eot?#iefix') format('embedded-opentype'),
+	           url('fonts/' + $filename + '.woff') format('woff'),
+	           url('fonts/' + $filename + '.ttf') format('truetype'),
+	           url('fonts/' + $filename + '.svg#UbuntuItalic') format('svg');
+	   font-weight: normal;
+	   font-style: normal;
+	}
+}
+
+@mixin font-smoothing() {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+//  CLEARIFX
+//Extend this one in to wrappers needing clearfix.
+// ***************************************
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+
+// Enable hardware acceleration
+// ***************************************
+@mixin enableHW{
+    //enable HW
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+
+    //prevents flickering
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    //prevents flickering
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+}
+
+
+// ANIMATIONS
+// ***************************************
+
+//Defining keyframes
+@mixin keyframe ($animation_name) {
+    @-webkit-keyframes #{$animation_name} {
+        @content;
+    }
+
+    @-moz-keyframes #{$animation_name} {
+        @content;
+    }
+
+    @-o-keyframes #{$animation_name} {
+        @content;
+    }
+
+    @keyframes #{$animation_name} {
+        @content;
+    }
+}
+
+// Example usage: 
+// @include animation(animName, duration, ease)
+
+// Easings
+$easeInOutQuart : cubic-bezier(0.770, 0.000, 0.175, 1.000);
+$easeInOutQuad : cubic-bezier(0.455, 0.030, 0.515, 0.955);
+$easeOutQuart : cubic-bezier(0.165, 0.840, 0.440, 1.000);
+$easeInQuart : cubic-bezier(0.895, 0.030, 0.685, 0.220);
+$easeOutCirc : cubic-bezier(0.075, 0.82, 0.165, 1);
+
+// Defining a "default" easing
+$d : $easeInOutQuart;
+
+
+// Defining animations and durations and easing
+// Possible easing ;  easeInOutQuart, easeInOutQuad, easeOutQuart, easeInQuart
+@mixin animation ($animation, $duration, $ease) {
+		//-webkit-animation-delay: 1s;
+    -webkit-animation-duration: $duration;
+    -webkit-animation-name: $animation;
+    -webkit-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+
+
+    -moz-animation-duration: $duration;
+    -moz-animation-name: $animation;
+    -moz-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+
+
+    -o-animation-duration: $duration;
+    -o-animation-name: $animation;
+    -o-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+
+    animation-duration: $duration;
+    animation-name: $animation;
+    animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+
+    @if $ease == easeInOutQuart {
+	    -webkit-transition-timing-function: $easeInOutQuart;
+		   -moz-transition-timing-function: $easeInOutQuart;
+		    -ms-transition-timing-function: $easeInOutQuart;
+		     -o-transition-timing-function: $easeInOutQuart;
+		        transition-timing-function: $easeInOutQuart;
+	  }
+	  @if $ease == easeInOutQuad {
+	    -webkit-transition-timing-function: $easeInOutQuad;
+		   -moz-transition-timing-function: $easeInOutQuad;
+		    -ms-transition-timing-function: $easeInOutQuad;
+		     -o-transition-timing-function: $easeInOutQuad;
+		        transition-timing-function: $easeInOutQuad;
+	  }
+	  @if $ease == easeOutQuart {
+	     -webkit-transition-timing-function: $easeOutQuart;
+		   -moz-transition-timing-function: $easeOutQuart;
+		    -ms-transition-timing-function: $easeOutQuart;
+		     -o-transition-timing-function: $easeOutQuart;
+		        transition-timing-function: $easeOutQuart; /* easeOutQuart */
+	  }
+
+	  @if $ease == easeInQuart {
+	     -webkit-transition-timing-function: $easeInQuart;
+		   -moz-transition-timing-function: $easeInQuart;
+		    -ms-transition-timing-function: $easeInQuart;
+		     -o-transition-timing-function: $easeInQuart;
+		        transition-timing-function: $easeInQuart; /* easeInQuart */
+	  }
+	  @if $ease == easeOutCirc {
+	     -webkit-transition-timing-function: $easeOutCirc;
+		   -moz-transition-timing-function: $easeOutCirc;
+		    -ms-transition-timing-function: $easeOutCirc;
+		     -o-transition-timing-function: $easeOutCirc;
+		        transition-timing-function: $easeOutCirc; /* easeInQuart */
+	  }
+
+
+
+	  @else{
+
+	  }
+}
+
+
+// Mediaqueries and breakpoints setup
+//***************************************
+// Example use: @include breakpoint(medium-down);
+
+$small-breakpoint-value-1: $small-breakpoint-value + 1px;
+$medium-breakpoint-value-1: $medium-breakpoint-value + 1px;
+$large-breakpoint-value-1: $large-breakpoint-value + 1px;
+
+
+@mixin breakpoint($point) {
+  @if $point == xlarge {
+    @media (min-width: $large-breakpoint-value) { @content; }
+  }
+  @if $point == large {
+    @media (min-width:$medium-breakpoint-value) and (max-width: $large-breakpoint-value-1) { @content; }
+  }
+  @if $point == large-up {
+    @media (min-width:$medium-breakpoint-value) { @content; }
+  }
+  @if $point == large-down {
+    @media (max-width:$large-breakpoint-value-1) { @content; }
+  }
+  @if $point == medium {
+    @media (min-width:$small-breakpoint-value-1) and (max-width: $medium-breakpoint-value) { @content; }
+  }
+  @if $point == medium-down {
+    @media (max-width: $medium-breakpoint-value) { @content; }
+  }
+  @if $point == medium-up {
+    @media (min-width:$small-breakpoint-value+1) { @content; }
+  }
+  @if $point == medium-large {
+    @media (min-width:$small-breakpoint-value) and (max-width: $large-breakpoint-value) { @content; }
+  }
+  @if $point == small {
+    @media (max-width: $small-breakpoint-value-1)  { @content; }
+  }
+  @else if $point == xsmall {
+    @media (max-width: $xsmall-breakpoint-value)  { @content; }
+  }
+}
+
+// Tweakpoints. Use them for viewport less than a certain width
+// Example use: @include tweakpoint(750px);
+@mixin tweakpoint($maxsize){
+	@media (max-width: $maxsize) { @content; }
+}
+
+
+
+//	Defining the max width of the website
+//***********************************
+@mixin maxwidth{
+	max-width: $page-max-width;
+	//padding: 0 $base-line-height/2;
+	margin: 0 auto;
+}
+
+
+
+// Visibility for various sizes
+//***********************************
+.hide-for-small{
+	@include breakpoint(small){
+		display:none !important;
+	}
+}
+.hide-for-medium{
+	@include breakpoint(medium){
+		display:none !important;
+	}
+}
+.hide-for-large{
+	@include breakpoint(large-up){
+		display:none !important;
+	}
+}
+.hide-for-xlarge{
+	@include breakpoint(xlarge){
+		display:none !important;
+	}
+}
+
+
+
+
+// Inject a small text  telling you wich breakpoint is the current one. Change .page class to the element you want to use
+
+@if $view-breakpoints {
+  body:before {
+    z-index: 400000;
+    color: black;
+    text-align: right;
+    position: fixed;
+    bottom: 50px;
+    right: 0;
+    padding: 3px 10px;
+    border-left: 1px solid red;
+    border-radius: 5px 0 0 5px;
+    background: rgba(255, 255, 255, 0.8);
+    opacity: 0.3;
+    @include breakpoint(xsmall) {
+      content: "xsmall";
+    }
+    @include breakpoint(small) {
+      content: "small";
+    }
+    @include breakpoint(medium) {
+      content: "medium";
+    }
+    @include breakpoint(large) {
+      content: "large";
+    }
+    @include breakpoint(xlarge) {
+      content: "xlarge";
+    }
+  }
+}
+
+
+@mixin absolute($top: 0, $right: 0, $bottom: 0, $left: 0){
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin fixed($top: 0, $right: 0, $bottom: 0, $left: 0){
+  position: fixed;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
