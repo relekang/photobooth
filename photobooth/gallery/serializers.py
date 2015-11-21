@@ -7,6 +7,7 @@ from .models import Photo
 
 
 def create_url(request, path):
+    path = path.replace('//', '/')
     if request is None:
         return '{}{}'.format(settings.SERVER_URL, path)
     return 'http{s}://{url}'.format(
@@ -14,7 +15,7 @@ def create_url(request, path):
         url='{host}{path}'.format(
             host=request.get_host(),
             path=path
-        ).replace('//', '/')
+        )
     )
 
 
