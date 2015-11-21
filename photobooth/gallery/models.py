@@ -14,7 +14,7 @@ class Photo(TimeStampModel):
     like_count = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.created_at
+        return str(self.created_at)
 
     @property
     def thumbnail(self):
