@@ -1,5 +1,9 @@
 setup_tasks:
-  - npm install -g grunt-cli
-  - cd frontend && npm install && grunt build
+ - npm install -g grunt-cli
+ - cd frontend && npm install && grunt build
+
 tasks:
-  - tox
+ - tox
+
+services:
+ - postgresql
