@@ -95,3 +95,6 @@ db.sqlite3
 uploads
 
 PB.views.js
+
+frontend/src/sass/import.scss
+
