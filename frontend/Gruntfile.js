@@ -134,4 +134,5 @@ module.exports = function (grunt) {
 
     // Default task(s).
     grunt.registerTask('default', ['sass-builder', 'sass:dist', 'ejs-collect', 'uglify', 'copy', 'autoprefixer', 'watch']);
+    grunt.registerTask('build', ['sass-builder', 'sass:dist', 'ejs-collect', 'uglify', 'copy', 'autoprefixer']);
 };

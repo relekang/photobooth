@@ -10,7 +10,6 @@ PB.Photos = can.Control({
 	},
     getPhotos: function () {
         $.get(config.API_URL + "photos", this.proxy(function(response){
-            console.log(response);
             this.photos.attr(response);
         }));
     }
