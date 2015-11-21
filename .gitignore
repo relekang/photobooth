@@ -93,3 +93,5 @@ docs/_build/
 target/
 db.sqlite3
 uploads
+
+PB.views.js
