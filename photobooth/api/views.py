@@ -1,10 +1,13 @@
-from PIL import Image
 from io import BytesIO
 
 from django.http import HttpResponse
+from django.http.response import JsonResponse
+from PIL import Image
 from rest_framework import viewsets
+from rest_framework.views import APIView
 
 from photobooth import image_filters
+from photobooth.gallery import tasks as photo_tasks
 from photobooth.gallery.models import Photo
 from photobooth.gallery.serializers import PhotoSerializer
 
@@ -22,3 +25,10 @@ class PhotoViewSet(viewsets.ModelViewSet):
         response = HttpResponse(content=output)
         response['Content-Type'] = 'image/jpeg'
         return response
+
+
+class TakePhotoView(APIView):
+    def post(self, request):
+        photo_tasks.take_photo.delay(0)
+
+        return JsonResponse({'message': 'Photo will be taken'}, status=202)

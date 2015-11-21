@@ -27,6 +27,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['json']
+
+BROKER_URL = secret('BROKER_URL') or 'redis://localhost:6379/0'
+
+
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [

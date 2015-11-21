@@ -1,10 +1,13 @@
 import time
-import picamera
+
 import requests
 from celery import shared_task
 
+
 @shared_task
-def take_picture():
+def take_photo():
+    import picamera
+
     with picamera.PiCamera() as camera:
         camera.resolution = (2592, 1944)
         camera.start_preview()

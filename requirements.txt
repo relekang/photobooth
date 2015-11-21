@@ -6,3 +6,5 @@ psycopg2
 django-cors-headers
 python-thumbnails
 celery
+requests
+redis
