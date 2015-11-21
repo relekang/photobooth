@@ -1,26 +1,39 @@
 from rest_framework import serializers
+from rest_framework.reverse import reverse
 
 from .models import Photo
 
 
-class ThumbnailSerializer(serializers.BaseSerializer):
+def create_url(request, path):
+    return 'http{s}://{host}{path}'.format(
+        s='s' if request.is_secure() else '',
+        host=request.get_host(),
+        path=path
+    ).replace('//', '/')
+
+
+class ImageSerializer(serializers.BaseSerializer):
     def to_representation(self, obj):
         request = self.context['request']
-        return 'http{s}://{host}{path}'.format(
-            s='s' if request.is_secure() else '',
-            host=request.get_host(),
-            path=obj.url
-        )
+        return {
+            'normal': create_url(request, obj.url),
+            'vignette': create_url(
+                request,
+                reverse('filter_image', kwargs={'filter_name': 'vignette', 'path': obj.url})
+            )
+        }
 
 
 class PhotoSerializer(serializers.HyperlinkedModelSerializer):
-    thumbnail = ThumbnailSerializer(read_only=True)
+    thumbnail = ImageSerializer(read_only=True)
+    image = ImageSerializer(read_only=True)
 
     class Meta:
         model = Photo
         fields = (
             'id',
             'file',
+            'image',
             'created_at',
             'updated_at',
             'thumbnail',
