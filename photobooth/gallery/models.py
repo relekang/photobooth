@@ -6,7 +6,7 @@ from thumbnails import get_thumbnail, settings
 
 
 class Photo(TimeStampModel):
-    file = models.ImageField(upload_to='photos')
+    file = models.FileField(upload_to='photos')
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
