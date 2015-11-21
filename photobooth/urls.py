@@ -8,6 +8,7 @@ from . import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('photobooth.api.urls')),
+    url(r'^remote/$', views.Remote.as_view()),
     url(r'^$', views.LandingPage.as_view()),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
