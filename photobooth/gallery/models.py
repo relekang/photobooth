@@ -7,10 +7,10 @@ from django.db import models
 from thumbnails import get_thumbnail, settings
 
 
-
 class Photo(TimeStampModel):
     file = models.FileField(upload_to='photos')
     is_active = models.BooleanField(default=True)
+    like_count = models.IntegerField(default=0)
 
     def __str__(self):
         return self.created_at
