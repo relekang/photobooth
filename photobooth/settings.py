@@ -27,6 +27,7 @@ if DEBUG is None:
 
 SECRET_KEY = secret('SECRET_KEY') or 'a9ge!f%w7d*x*9@@@a9022@xn^jh@u!u=&#emczfwjx86r705%'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SERVER_URL = secret('SERVER_URL') or 'http://booth.lkng.me'
 
 CORS_ORIGIN_ALLOW_ALL = True
 

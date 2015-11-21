@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.http.request import HttpRequest
 from rest_framework import serializers
 from rest_framework.reverse import reverse
 
@@ -5,6 +7,8 @@ from .models import Photo
 
 
 def create_url(request, path):
+    if request is None:
+        return '{}{}'.format(settings.SERVER_URL, path)
     return 'http{s}://{url}'.format(
         s='s' if request.is_secure() else '',
         url='{host}{path}'.format(
@@ -16,7 +20,7 @@ def create_url(request, path):
 
 class ImageSerializer(serializers.BaseSerializer):
     def to_representation(self, obj):
-        request = self.context['request']
+        request = self.context['request'] if 'request' in self.context else None
         return {
             'normal': create_url(request, obj.url),
             'vignette': create_url(

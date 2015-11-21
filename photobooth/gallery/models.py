@@ -1,8 +1,11 @@
+import json
 import os
 
+import redis
 from basis.models import TimeStampModel
 from django.db import models
 from thumbnails import get_thumbnail, settings
+
 
 
 class Photo(TimeStampModel):
@@ -23,3 +26,9 @@ class Photo(TimeStampModel):
     @property
     def image(self):
         return self.file
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        from photobooth.gallery.serializers import PhotoSerializer
+        client = redis.StrictRedis(host='localhost', port=6379, db=0)
+        client.publish('photobooth', json.dumps({'photo': PhotoSerializer(self).data}))
