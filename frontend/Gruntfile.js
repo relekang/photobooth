@@ -4,8 +4,8 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         'ejs-collect': {
             dist: {
-                output: 'src/js/itera/aon.views.js',
-                src: 'src/js/itera/**/*.ejs',
+                output: 'src/js/superteam/PB.views.js',
+                src: 'src/js/superteam/**/*.ejs',
                 options: {
                     ignoreUnderscore: true
                 }
@@ -14,9 +14,9 @@ module.exports = function (grunt) {
         'sass-builder': {
             dist: {
                 extension: 'scss',
-                dest:"src/sass/",
+                dest: "src/sass/",
                 src: 'src/sass/',
-                ignorePatterns: ["base", "vendor"],
+                ignorePatterns: ["base"],
                 requiredPatterns: ["/"]
             }
         },
@@ -28,10 +28,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    //Destination           //Source
-                    'build/Content/css/ie.css': 'src/sass/ie.scss',
-                    'build/Content/css/print.css': 'src/sass/print.scss',
-                    'build/Content/css/screen.css': 'src/sass/screen.scss'
+                    'build/css/screen.css': 'src/sass/screen.scss'
                 }
             }
         },
@@ -44,7 +41,7 @@ module.exports = function (grunt) {
                         'src/js/lib/jquery-2.1.1.min.js',
                         'src/js/lib/can.custom.js',
                         'src/js/lib/fastclick.js',
-                        'src/js/lib/ScrollMagic.js',
+                        'src/js/lib/ScrollMagic.js'
                     ]
                 }
             },
@@ -58,7 +55,9 @@ module.exports = function (grunt) {
                     'build/scripts/app.min.js': [
                         'src/js/superteam/utils/helpers.js',
                         'src/js/superteam/utils/extensions.js',
+                        'src/js/superteam/config.js',
                         'src/js/superteam/mothership.js',
+                        'src/js/superteam/PB.views.js',
 
                         'src/js/superteam/controllers/*.js',
                         'src/js/superteam/controllers/**/*.js'
@@ -69,7 +68,7 @@ module.exports = function (grunt) {
 
         autoprefixer: {
             def: {
-                src: 'build/Content/css/*.css'
+                src: 'build/css/*.css'
             }
         },
 
@@ -77,7 +76,7 @@ module.exports = function (grunt) {
         watch: {
             sass: {
                 files: ['src/sass/**/*.{scss,sass}'],
-                tasks: ['sass-builder', 'sass:dist','autoprefixer']
+                tasks: ['sass-builder', 'sass:dist', 'autoprefixer']
             },
             js: {
                 files: [
@@ -92,8 +91,8 @@ module.exports = function (grunt) {
             },
             views: {
                 files: [
-                    "src/js/itera/views/*.ejs",
-                    "src/js/itera/views/**/*.ejs"
+                    "src/js/superteam/views/*.ejs",
+                    "src/js/superteam/views/**/*.ejs"
                 ],
                 tasks: ["ejs-collect"]
             }
@@ -103,7 +102,7 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: 'src/img/',
                 src: '**',
-                dest: 'build/Content/img/',
+                dest: 'build/img/',
                 flatten: false,
                 filter: 'isFile'
             },
@@ -111,7 +110,7 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: 'src/sass/gfx/',
                 src: '**',
-                dest: 'build/Content/css/gfx/',
+                dest: 'build/css/gfx/',
                 flatten: true
             },
             html: {
@@ -132,5 +131,5 @@ module.exports = function (grunt) {
     grunt.loadTasks('grunt-tasks');
 
     // Default task(s).
-    grunt.registerTask('default', ['sass-builder','sass:dist', 'autoprefixer', 'ejs-collect', 'uglify', 'watch']);
+    grunt.registerTask('default', ['sass-builder', 'sass:dist', 'ejs-collect', 'uglify', 'copy', 'autoprefixer', 'watch']);
 };

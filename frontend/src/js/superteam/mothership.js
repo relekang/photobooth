@@ -1,13 +1,16 @@
-PB = {};
+//NS
+PB = {
+    Views: {}
+};
 PB.Mothership = can.Control({
     defaults: {}
 }, {
+    photos: undefined,
     init: function () {
-        alert("Jubel");
-
+        this.photos = new PB.Photos("[data-c=photos]", {});
     }
 });
 
 $(document).ready(function () {
-    new PB.Mothership(".body", {});
+    new PB.Mothership("body", {});
 });
