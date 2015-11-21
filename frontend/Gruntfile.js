@@ -28,7 +28,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    'build/css/screen.css': 'src/sass/screen.scss'
+                    'build/static/css/screen.css': 'src/sass/screen.scss'
                 }
             }
         },
@@ -37,7 +37,7 @@ module.exports = function (grunt) {
         uglify: {
             lib: {
                 files: {
-                    'build/scripts/lib.min.js': [
+                    'build/static/scripts/lib.min.js': [
                         'src/js/lib/jquery-2.1.1.min.js',
                         'src/js/lib/can.custom.js',
                         'src/js/lib/fastclick.js',
@@ -52,7 +52,7 @@ module.exports = function (grunt) {
                     sourceMap: true
                 },
                 files: {
-                    'build/scripts/app.min.js': [
+                    'build/static/scripts/app.min.js': [
                         'src/js/superteam/utils/helpers.js',
                         'src/js/superteam/utils/extensions.js',
                         'src/js/superteam/config.js',
@@ -68,7 +68,7 @@ module.exports = function (grunt) {
 
         autoprefixer: {
             def: {
-                src: 'build/css/*.css'
+                src: 'build/static/css/*.css'
             }
         },
 
@@ -102,7 +102,7 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: 'src/img/',
                 src: '**',
-                dest: 'build/img/',
+                dest: 'build/static/img/',
                 flatten: false,
                 filter: 'isFile'
             },
@@ -110,7 +110,7 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: 'src/sass/gfx/',
                 src: '**',
-                dest: 'build/css/gfx/',
+                dest: 'build/static/css/gfx/',
                 flatten: true
             },
             html: {
