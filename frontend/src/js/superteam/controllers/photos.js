@@ -14,10 +14,10 @@ PB.Photos = can.Control({
     initWebSocket: function () {
         this.socket = new ReconnectingWebSocket(config.WS_URL);
         this.socket.open();
-        this.socket.onopen(function(){
+        this.socket.onopen(this.proxy(function(){
             console.log("JUBEL");
-        })
-        this.socket.onmessage(this.proxy(function(message, data){
+        }));
+        this.socket.onmessage(this.proxy(function(message){
             console.log(message);
         }));
     },
