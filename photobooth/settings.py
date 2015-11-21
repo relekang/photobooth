@@ -31,7 +31,7 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
 
-BROKER_URL = secret('BROKER_URL') or 'redis://localhost:6379/0'
+BROKER_URL = secret('BROKER_URL') or 'redis://localhost:6379/5'
 
 
 ALLOWED_HOSTS = []
