@@ -1,4 +1,13 @@
 .remote{
+  font-size: 5em;
+  text-align: center;
+  width: 100%;
+  background: transparent;
+
+  &:hover {
+    font-weight: bold;
+  }
+
   .shoot{
 
   }
