@@ -5,6 +5,8 @@ from django.contrib import admin
 
 from . import views
 
+admin.site.site_header = 'Photobooth'
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('photobooth.api.urls')),
