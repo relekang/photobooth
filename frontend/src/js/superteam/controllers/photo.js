@@ -54,7 +54,7 @@ PB.Photo = can.Control({
         this.patch("is_active", false)
     },
     '[data-action=full-screen] click': function () {
-        var splash = new PB.PhotoSplash('<div class="photo-splash">', {data: this.data, love: this.proxy(this.love)});
+        var splash = new PB.PhotoSplash('<div class="photo-splash">', {data: this.data, love: this.proxy(this.love), isLoved: this.viewData.attr("isLoved")});
         $("body").append(splash.element);
     },
     '[data-action=love] click': function () {

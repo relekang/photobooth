@@ -6,7 +6,7 @@
 		</div>
 	</div>
 	<div class="controls">
-		<button data-action="love" class="icon float-left love">
+		<button data-action="love" class="icon float-left love<%= (this.isLoved ? " highlight" : "") %>">
 			<span style="color: #333;"><%= this.attr("likeCount") %></span>
 		</button>
 	</div>

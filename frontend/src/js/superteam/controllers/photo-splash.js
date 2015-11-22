@@ -8,8 +8,12 @@ PB.PhotoSplash = can.Control({
     init: function () {
         this.viewData = new can.Map({
             url: this.options.data.preview.vignette,
-            likeCount: this.options.data.like_count
-        })
+            likeCount: this.options.data.like_count,
+            isLoved: this.options.isLoved
+        });
+        if(this.options.isLoved){
+            this.hasLoved = true;
+        }
         this.element.html(Helpers.getView(PB.Views.photo_splash, this.viewData));
         this.ready();
     },
