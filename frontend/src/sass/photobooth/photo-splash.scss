@@ -3,6 +3,14 @@
 }
 
 .photo-splash {
+  &.loved {
+    button {
+      color: #000;
+      &:before {
+        color: #000;
+      }
+    }
+  }
   img {
     width: 100%;
     height: auto;
@@ -39,7 +47,7 @@
     overflow: auto;
     width: 70%;
     max-width: 800px;
-    padding: $base-line-height;
+    padding: $base-line-height $base-line-height $base-line-height*3;
     transform: translate3d(-50%, 0, 0);
     left: 50%;
     z-index: 2;
@@ -52,6 +60,28 @@
 
       transform: translate3d(0, -50%, 0);
     }
+  }
+  .controls {
+    height: 55px;
+    padding: 0 $base-line-height;
+    button span {
+      font-size: 22px;
+      margin: 0;
+    }
+    button:before {
+      font-size: 30px !important;
+    }
+    button:hover {
+      color: #000;
+      &:before {
+        color: #000;
+      }
+    }
+  }
+  .img-container {
+    background-color: #aaaaaa;
+    height: 0;
+    padding-bottom: 75%;
   }
   .overlay {
     top: 0px;

@@ -3,12 +3,14 @@ PB.PhotoSplash = can.Control({
 }, {
     active: false,
     isDismissed: false,
-
+    hasLoved: false,
+    viewData: undefined,
     init: function () {
-        this.element.html(Helpers.getView(PB.Views.photo_splash, {
-            url: this.options.preview.vignette,
-            likeCount: this.options.like_count
-        }));
+        this.viewData = new can.Map({
+            url: this.options.data.preview.vignette,
+            likeCount: this.options.data.like_count
+        })
+        this.element.html(Helpers.getView(PB.Views.photo_splash, this.viewData));
         this.ready();
     },
     ready: function(){
@@ -48,6 +50,14 @@ PB.PhotoSplash = can.Control({
     '.overlay click': function () {
         if (!this.isDismissed) {
             this.dismiss();
+        }
+    },
+    '[data-action=love] click': function(){
+        if(!this.hasLoved){
+            this.hasLoved = true;
+            this.options.love();
+            this.element.addClass("loved")
+            this.viewData.attr("likeCount", this.viewData.attr("likeCount") + 1);
         }
     },
     '[data-action=prev] click': function(){

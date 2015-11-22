@@ -90,6 +90,10 @@ $controls-height: 30px;
     }
     transition: transform .4s ease;
     &.remove {
+      display: none;
+      @include breakpoint(large-up) {
+        display: inline;
+      }
       position: relative;
       &:hover {
         &:after {
