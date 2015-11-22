@@ -2,7 +2,7 @@
 <div data-action="full-screen" class="full-screen"></div>
 <div class="controls">
 	<button data-action="remove" data-tooltip="Slett" class="icon float-right remove"></button>
-	<button data-action="love" class="icon float-left love<%= (this.attr("cooldown") ? " highlight" : "") %>">
+	<button data-action="love" class="icon float-left love<%= (this.attr("isLoved") ? " highlight" : "") %>">
 		<span><%= this.attr("like_count") %></span>
 	</button>
 </div>

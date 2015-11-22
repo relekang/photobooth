@@ -54,6 +54,7 @@ module.exports = function (grunt) {
                 },
                 files: {
                     'build/static/scripts/app.min.js': [
+                        'src/js/superteam/utils/storage.js',
                         'src/js/superteam/utils/helpers.js',
                         'src/js/superteam/utils/extensions.js',
                         'src/js/superteam/config.js',
